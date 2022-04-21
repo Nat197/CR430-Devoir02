@@ -4,20 +4,26 @@ if __name__ == "__main__":
     ip = "127.0.0.1"
     port = 1234
    
-    server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    server.connect((ip,port))
-    buffer = server.recv(1024)
+    client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    client.connect((ip,port))
+    buffer = client.recv(1024)
     buffer = buffer.decode("utf-8")
-    print(f"Server: {buffer}")
+    print(f"client: {buffer}")
     string = ""
     try:
         string = inputimeout(prompt="Entrer votre commande:", timeout=20)
     except TimeoutOccurred:
         print("Délai dépassé")
     if(string):
-        server.send(bytes(string, "utf-8"))
-    buffer = server.recv(1024)
+        client.send(bytes(string, "utf-8"))
+        if(string == "fichier"):
+            filename = client.recv(1024).decode("utf-8")
+            print(f"file name : {filename}")
+            file = open(filename, "w")
+            client.send(bytes("Filename received", "utf-8"))
+    
+    buffer = client.recv(1024)
     buffer = buffer.decode("utf-8")
-    print(f"Server: {buffer}")
+    print(f"client: {buffer}")
     
         
