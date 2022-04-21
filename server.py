@@ -19,8 +19,10 @@ if __name__ == "__main__":
 
         if commande == "TIME":
             from datetime import datetime
-            now = datetime.now
-            
-        client.send(bytes(commande, "utf-8"))
+            now = datetime.now()
+            current_time = now.strftime("%H:%M:%S")
+            message = current_time
+
+        client.send(bytes(current_time, "utf-8"))
 
         client.close()
