@@ -21,10 +21,17 @@ if __name__ == "__main__":
             from datetime import datetime
             now = datetime.now
 
-            
+
         elif commande == "IP":
             ipclient = address[0]
             print(address[0])
+
+        elif commande == "EXIT":
+            client.close()
+        
+        else :
+            print("Command not valid please try again!")
+
         client.send(bytes(commande, "utf-8"))
 
-        client.close()
+        
