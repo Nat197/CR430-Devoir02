@@ -13,7 +13,8 @@ if __name__ == "__main__":
     while True:
         client, address = server.accept()
         print(f"Connection Established - {address[0]}:{address[1]}")
-        client.settimeout(20.0)
+        client.send(bytes(f"Connection Established - {address[0]}", "utf-8"))
+        client.settimeout(20)
         try:
             commande = client.recv(1024)
             commande = commande.decode("utf-8")
@@ -46,10 +47,11 @@ if __name__ == "__main__":
                 client.close()
             
             else :
-                message = "Cette commande n'est pas valide ou prise en charge par le serveur"
+                message = f"Cette commande n'est pas valide ou prise en charge par le serveur"
 
             client.send(bytes(message, "utf-8"))
         except socket.timeout:
-            print("TIMEOUT")
+            client.send(bytes("Le délai a été dépassé la connexion a été terminée...", "utf-8"))
+            print("TIMEOUT du client")
 
         
