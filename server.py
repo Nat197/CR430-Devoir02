@@ -23,10 +23,18 @@ if __name__ == "__main__":
             current_time = now.strftime("%H:%M:%S")
             message = current_time
 
+
         elif commande == "IP":
             ipclient = address[0]
-            message = "Votre adresse IP est : {ipclient}"            
-       
+            message = "Votre adresse IP est : {ipclient}"
+
+        elif commande == "EXIT":
+            message = "Fermeture de la connexion..."
+            client.close()
+        
+        else :
+            message = "Cette commande n'est pas valide ou prise en charge par le serveur"
+
         client.send(bytes(message, "utf-8"))
 
-        client.close()
+        
