@@ -1,3 +1,4 @@
+from ensurepip import version
 import socket
 
 
@@ -22,11 +23,18 @@ if __name__ == "__main__":
             now = datetime.now()
             current_time = now.strftime("%H:%M:%S")
             message = current_time
+    
+        elif commande == "OS":
+            import platform
+            system = platform.system()
+            release = platform.release()
+            version = platform.version()
 
+            message = f"Systeme d'exploitation : {system}\n Release : {release}\n Version : {version}"
 
         elif commande == "IP":
             ipclient = address[0]
-            message = "Votre adresse IP est : {ipclient}"
+            message = f"Votre adresse IP est : {ipclient}"
 
         elif commande == "EXIT":
             message = "Fermeture de la connexion..."
