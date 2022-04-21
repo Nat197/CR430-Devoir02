@@ -22,7 +22,8 @@ if __name__ == "__main__":
             now = datetime.now()
             current_time = now.strftime("%H:%M:%S")
             message = current_time
+        
 
-        client.send(bytes(current_time, "utf-8"))
+        client.send(bytes(message, "utf-8"))
 
         client.close()
