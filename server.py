@@ -19,10 +19,12 @@ if __name__ == "__main__":
 
         if commande == "TIME":
             from datetime import datetime
-            now = datetime.now()
-            current_time = now.strftime("%H:%M:%S")
-            message = current_time
+            now = datetime.now
 
-        client.send(bytes(current_time, "utf-8"))
+            
+        elif commande == "IP":
+            ipclient = address[0]
+            print(address[0])
+        client.send(bytes(commande, "utf-8"))
 
         client.close()
