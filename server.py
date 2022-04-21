@@ -13,9 +13,14 @@ if __name__ == "__main__":
         client, address = server.accept()
         print(f"Connection Established - {address[0]}:{address[1]}")
 
-        string = client.recv(1024)
-        string = string.decode("utf-8")
-        string = string.upper()
-        client.send(bytes(string, "utf-8"))
+        commande = client.recv(1024)
+        commande = commande.decode("utf-8")
+        commande = commande.upper()
+
+        if commande == "TIME":
+            from datetime import datetime
+            now = datetime.now
+            
+        client.send(bytes(commande, "utf-8"))
 
         client.close()
