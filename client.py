@@ -19,5 +19,5 @@ if __name__ == "__main__":
     buffer = server.recv(1024)
     buffer = buffer.decode("utf-8")
     print(f"Server: {buffer}")
-    
+    server.close()
         
