@@ -22,8 +22,11 @@ if __name__ == "__main__":
             now = datetime.now()
             current_time = now.strftime("%H:%M:%S")
             message = current_time
-        
 
+        elif commande == "IP":
+            ipclient = address[0]
+            message = "Votre adresse IP est : {ipclient}"            
+       
         client.send(bytes(message, "utf-8"))
 
         client.close()
