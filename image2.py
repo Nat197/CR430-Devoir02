@@ -2,12 +2,11 @@ import os
 import matplotlib.pyplot as mp
 import numpy as np
 from tabulate import tabulate
-import multiprocessing
 import time
 
-def calculRGB(root):
-    start_time = time.time()
-    for root, dirs, files in os.walk(root):
+root = "lfw"
+start_time = time.time()
+for root, dirs, files in os.walk(root):
         count = 0   
         #Parcourir tous les fichiers dans les sous repertoire du root avec os.walk
         for filename in dirs:
@@ -41,12 +40,4 @@ def calculRGB(root):
                 rgb[..., 1] = dataSum[1]
                 rgb[..., 2] = (255-dataSum[2]) - np.arange(255)
                 mp.imsave(f'resultat/{filename}.png', rgb)
-    print("--- %s seconds ---" % (time.time() - start_time))
-
-if __name__ == '__main__':            
-    name = "lfw"
-    start_time = time.time()
-    t = multiprocessing.Process(target=calculRGB, args=(name,))
-    t.start()
-
-        
+print("--- %s seconds ---" % (time.time() - start_time))
