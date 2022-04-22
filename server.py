@@ -1,5 +1,6 @@
 from ensurepip import version
 import socket
+from unittest import result
 
 
 if __name__ == "__main__":
@@ -46,10 +47,15 @@ if __name__ == "__main__":
                 client.send(bytes(message, "utf-8"))
 
             elif commande == "FICHIER":
-                file = open("", "r")
+                file = open("data/test.txt", "r")
                 data = file.read(1024)
-                client.send(bytes("", "utf-8"))
-                print("ok")
+                client.send(bytes("test.txt", "utf-8"))
+                resultat = client.recv(1024).decode("utf-8")
+                print(resultat)
+                client.send(data.encode("utf-8"))
+                resultat = client.recv(1024).decode("utf-8")
+                print(resultat)
+
 
             elif commande == "EXIT":
                 client.send(bytes("Fermeture de la connexion...", "utf-8"))

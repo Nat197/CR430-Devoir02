@@ -8,6 +8,7 @@ if __name__ == "__main__":
     client.connect((ip,port))
     buffer = client.recv(1024)
     buffer = buffer.decode("utf-8")
+    close = False
     print(f"client: {buffer}")
     string = ""
     try:
@@ -21,9 +22,16 @@ if __name__ == "__main__":
             print(f"file name : {filename}")
             file = open(filename, "w")
             client.send(bytes("Filename received", "utf-8"))
-    
-    buffer = client.recv(1024)
-    buffer = buffer.decode("utf-8")
-    print(f"client: {buffer}")
+            data = client.recv(1024).decode("utf-8")
+            file.write(data)
+            client.send(bytes("Filedata received", "utf-8"))
+            file.close()
+            client.close()
+            close = True
+            
+    if(not close):
+        buffer = client.recv(1024)
+        buffer = buffer.decode("utf-8")
+        print(f"Server: {buffer}")
     
         
