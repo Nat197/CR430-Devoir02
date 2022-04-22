@@ -18,7 +18,7 @@ def calculRGB(root):
             count = len(list)
             data = []
             #Si longueur de la liste plus grand que 2 = on a plus de 2 images
-            if count == 4:
+            if count >= 2:
                 #print(os.path.join(root, filename))
                 #Parcourir tous les fichiers de ce sous repertoire
                 first = True
