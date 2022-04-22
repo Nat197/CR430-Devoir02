@@ -1,4 +1,5 @@
 import os
+import matplotlib.pyplot as mp
 
 root = "lfw"
 
@@ -9,5 +10,9 @@ for root, dirs, files in os.walk(root):
         list = os.listdir(dir)
         count = len(list)
         if count >= 2:
-             print(os.path.join(root, filename))
+            print(os.path.join(root, filename))
+            for img in list:
+                image = mp.imread(f"{dir}/{img}")
+                print(image.shape)
+
         
