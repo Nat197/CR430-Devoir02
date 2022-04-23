@@ -42,7 +42,7 @@ def calculRGB(root):
                 red = np.around(tempRed / count)
                 blue = np.around(tempBlue / count)
                 green = np.around(tempGreen / count)
-
+                #print(img.shape)
                 #Creation d'une image a partir d'un array
                 rgb = np.zeros((250, 250, 3), dtype=np.uint8)
                 rgb[..., 0] = red

@@ -31,6 +31,7 @@ if __name__ == "__main__":
                 now = datetime.now()
                 current_time = now.strftime("%H:%M:%S")
                 message = current_time
+                client.send(bytes(message, "utf-8"))
         
             elif commande == "OS":
                 import platform
